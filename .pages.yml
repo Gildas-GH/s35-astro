@@ -10,9 +10,13 @@ content:
       - name: title
         label: Titre
         type: string
+        options:
+          maxlength: 70
       - name: description
         label: Description
-        type: string
+        type: text
+        options:
+          maxlength: 140
       - name: body
         label: Contenu
         type: rich-text
