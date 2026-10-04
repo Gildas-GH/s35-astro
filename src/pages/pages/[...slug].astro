@@ -20,20 +20,88 @@ export async function getStaticPaths() {
   }));
 }
 
+function prochainJourDuMois(text: string, from = new Date()) {
+  const jours: Record<string, number> = {
+    dimanche: 0,
+    lundi: 1,
+    mardi: 2,
+    mercredi: 3,
+    jeudi: 4,
+    vendredi: 5,
+    samedi: 6,
+  };
+
+  const ordinaux: Record<string, number> = {
+    'premier': 1,
+    'première': 1,
+    '1er': 1,
+    '1re': 1,
+    'deuxième': 2,
+    'deuxieme': 2,
+    'second': 2,
+    'seconde': 2,
+    '2e': 2,
+    'troisième': 3,
+    'troisieme': 3,
+    '3e': 3,
+    'quatrième': 4,
+    'quatrieme': 4,
+    '4e': 4,
+    'cinquième': 5,
+    'cinquieme': 5,
+    '5e': 5,
+  };
+
+  const regex =
+    /(?:le\s+)?(premier|première|1er|1re|deuxième|deuxieme|second|seconde|2e|troisième|troisieme|3e|quatrième|quatrieme|4e|cinquième|cinquieme|5e)\s+(dimanche|lundi|mardi|mercredi|jeudi|vendredi|samedi)\s+du\s+mois/i;
+
+  const match = text.match(regex);
+
+  if (!match) {
+    return new Date(0)
+  }
+
+  const [, ordinalText, jourText] = match;
+
+  const occurrence = ordinaux[ordinalText.toLowerCase()];
+  const jour = jours[jourText.toLowerCase()];
+
+  // Cherche l'occurrence dans le mois donné
+  function trouver(year: number, month: number) {
+    const premier = new Date(year, month, 1);
+    const decalage = (jour - premier.getDay() + 7) % 7;
+
+    return new Date(
+      year,
+      month,
+      1 + decalage + (occurrence - 1) * 7
+    );
+  }
+
+  // On commence par le mois courant
+  let date = trouver(from.getFullYear(), from.getMonth());
+
+  // Si la date est passée, on prend le mois suivant
+  if (date < from) {
+    date = trouver(from.getFullYear(), from.getMonth() + 1);
+  }
+
+  return date;
+}
+
 const { page } = Astro.props;
 
 const { Content } = await render(page);
 
-let nextPerm: string[] = []
+let nextPerm: Date[] = []
+let nextPermStr: string[] = []
 if (page.data.permanences) {
-  nextPerm = page.data.permanences.map((perm) => {
-    const permDate = fr.parseDate(perm);
-    const permDateText = permDate.toLocaleDateString("fr-FR", {
-      day: "numeric",
-      month: "long"
-    });
-    return permDateText
-  })
+  nextPerm = page.data.permanences.map((perm) => prochainJourDuMois(perm));
+  nextPerm.sort((a, b) => a.getTime() - b.getTime());
+  nextPermStr = nextPerm.map((perm) => perm.toLocaleDateString("fr-FR", {
+    day: "numeric",
+    month: "long"
+  }));
 }
 
 ---
@@ -52,10 +120,9 @@ if (page.data.permanences) {
       page.data?.image && <img src={page.data.image} />
     }
     <Content />
-    <p>Prochaines permanences</p>
     {
       nextPerm?.length > 0 &&
-      <p>Prochaines permanences le {nextPerm.map((perm, index) => <span>{perm}{index < nextPerm.length-1 && ", le "}</span>)} </p>
+      <h2 class="bg-accent p-4 text-center text-white">Prochaines permanences le {nextPermStr.map((perm, index) => <span>{perm}{index < nextPerm.length-1 && ", le "}</span>)} </h2>
     }
   </Main>
 
