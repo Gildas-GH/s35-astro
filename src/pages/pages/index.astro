@@ -16,15 +16,15 @@ const pages = await getCollection("pages");
 
   <Breadcrumb />
 
-  <Main pageTitle="Pages" pageDesc="Pages de Solidaires 35 exportées de WordPress (donc désynchronisées)">
-    <div class="flex flex-col gap-5">
-        {pages.map((p) => 
-        <a href={`/pages/${p.id}/`}>
-            <div>
-                {p.data.title}
-            </div>
-        </a>)}
+  <Main pageTitle="Pages" pageDesc="Pages du site Solidaires 35 exportées de WordPress (donc désynchronisées)">
+    <div class="grid grid-cols-3 gap-4 my-4">
+      {pages.map((p) => 
+        <a href={`/pages/${p.id}/`} class="border-accent border-4 text-accent hover:text-white hover:bg-accent transition font-bold flex items-center text-center p-4">
+          <h3>{p.data.title}</h3>
+        </a>
+      )}
     </div>
+
   </Main>
 
   <Footer />

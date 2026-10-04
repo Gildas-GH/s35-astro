@@ -34,8 +34,8 @@ export default {
     allPosts: "Tous les posts",
   },
   footer: {
-    copyright: "Copyright Solidaires 35",
-    allRightsReserved: "Tous droits réservés.",
+    copyright: "Copyright",
+    allRightsReserved: "Tous droits réservés",
   },
   pages: {
     tagTitle: "Tag",
