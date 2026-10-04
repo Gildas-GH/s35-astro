@@ -4,6 +4,9 @@ description: Solidaires 35 vous accueille dans ses locaux rennais lors de ses
   permanences syndicales tous les 1er et 3e lundis du mois à 18h.
 formation: false
 image: /wp-content/uploads/2026/08/Permanence-accueil-syndical-avec-DATES_oct26.png
+permanences:
+  - premier lundi du mois
+  - troisième lundi du mois
 ---
 Solidaires 35 vous accueille lors de ses permanences syndicales tous les 1er et 3e lundis du mois à 18h au 5 rue de Lorraine (métro Villejean Université). 
 
