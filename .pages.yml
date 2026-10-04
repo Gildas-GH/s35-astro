@@ -7,9 +7,12 @@ content:
     type: collection
     path: src/content/pages
     fields:
-      - name: Titre
+      - name: title
+        label: Titre
         type: string
-      - name: Description
+      - name: description
+        label: Description
         type: string
-      - name: Contenu
+      - name: body
+        label: Contenu
         type: rich-text
