@@ -52,6 +52,7 @@ const syndicats = defineCollection({
     facebook: z.string().optional(),
     instagram: z.string().optional(),
     website: z.string().optional(),
+    image: z.string().optional(),
     map: z.object({
       latitude: z.number().optional(),
       longitude: z.number().optional(),

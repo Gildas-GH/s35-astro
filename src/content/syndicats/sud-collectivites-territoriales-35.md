@@ -3,6 +3,7 @@ title: SUD Collectivités Territoriales 35
 mail: syndicat@sud-ct35.org
 facebook: "100075926806181"
 instagram: syndicatsudct35
+image: /sud-ct.jpg
 website: https://www.sud-ct35.org/
 ---
 Le syndicat Sud CT 35 a vocation à représenter et à défendre tou·tes les salarié·es et ancien·nes salarié·es des collectivités territoriales qui ont leur siège en Ille-et-Vilaine, à savoir :

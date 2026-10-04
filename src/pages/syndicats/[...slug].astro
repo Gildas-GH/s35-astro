@@ -1,0 +1,67 @@
+---
+import { render, getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import Main from "@/components/Main.astro";
+import Footer from "@/components/Footer.astro";
+import config from "@/config";
+import IconDownload from "@/assets/icons/IconWorld.svg";
+import IconPhone from "@/assets/icons/IconPhone.svg";
+import Map from "@/components/Map.astro";
+import Instagram from "@/assets/icons/socials/instagram.svg";
+import Facebook from "@/assets/icons/socials/facebook.svg";
+import Mail from "@/assets/icons/socials/mail.svg";
+
+export async function getStaticPaths() {
+  const syndicats = await getCollection("syndicats");
+  return syndicats.map((syndicat) => ({
+    params: { slug: syndicat.id },
+    props: {
+      syndicat,
+    }
+  }));
+}
+
+const { syndicat } = Astro.props;
+
+const { Content } = await render(syndicat);
+
+---
+
+<Layout
+  title={`${syndicat.data.title} | ${config.site.title}`}
+  description={syndicat.data.title}
+>
+  <Header />
+
+  <Breadcrumb />
+
+  <Main pageTitle={syndicat.data.title} class="app-prose">
+    <div class="flex gap-2">
+      {
+        syndicat.data.website && <a href={syndicat.data.website} target="_blank"><IconDownload /></a>
+      }
+      {
+        syndicat.data.mail && <a href={`mailto:${syndicat.data.mail}`} target="_blank"><Mail /></a>
+      }
+      {
+        syndicat.data.instagram && <a href={`https://www.instagram.com/${syndicat.data.instagram}/`} target="_blank"><Instagram /></a>
+      }
+      {
+        syndicat.data.facebook && <a href={`https://www.facebook.com/${syndicat.data.facebook}/`} target="_blank"><Facebook /></a>
+      }
+      {
+        syndicat.data.phone && <a href={`tel:+33${syndicat.data.phone}`}><IconPhone /></a>
+      }
+    </div>
+    <Content />
+  </Main>
+
+  {
+    syndicat.data.map?.latitude &&
+    <Map map={syndicat.data.map} />
+  }
+
+  <Footer />
+</Layout>

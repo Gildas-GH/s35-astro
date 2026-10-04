@@ -4,6 +4,7 @@ mail: solidairesinformatique35@disroot.org
 facebook: solidairesinformatique
 instagram: solidairesinformatique
 website: https://solidairesinformatique.org
+image: /solidaires-informatique.png
 map:
   latitude: 48.1226712
   longitude: -1.7066606

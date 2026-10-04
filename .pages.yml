@@ -97,6 +97,9 @@ content:
       - name: website
         label: Site Internet
         type: string
+      - name: image
+        label: Logo du syndicat
+        type: image
       - name: map
         label: Carte
         description: Permet d'afficher et de personnaliser une carte sur la page. Laisser vide pour ne pas afficher de carte.

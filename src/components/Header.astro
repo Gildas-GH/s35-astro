@@ -3,9 +3,7 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 import IconUnderline from "@/assets/icons/IconUnderline.svg";
 import IconMenuDeep from "@/assets/icons/IconMenuDeep.svg";
 import IconArchive from "@/assets/icons/IconArchive.svg";
-import IconSunHigh from "@/assets/icons/IconSunHigh.svg";
 import IconSearch from "@/assets/icons/IconSearch.svg";
-import IconMoon from "@/assets/icons/IconMoon.svg";
 import IconX from "@/assets/icons/IconX.svg";
 import LinkButton from "./LinkButton.astro";
 import { stripBase, stripLocale } from "@/utils/withBase";
@@ -46,7 +44,7 @@ const isActive = (path: string) => {
   class="app-layout flex flex-col items-center justify-between sm:flex-row"
 >
   <div
-    class="border-border bg-background relative flex w-full items-baseline justify-between border-b py-4 sm:items-center sm:py-6 font-scotchlidaires"
+    class="bg-background relative flex w-full items-baseline justify-between py-4 sm:items-center sm:py-6 font-scotchlidaires"
   >
     <a
       href={getRelativeLocaleUrl(locale, "")}

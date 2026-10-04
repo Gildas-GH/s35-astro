@@ -5,6 +5,7 @@ mail: rennes.solidairesetudiantes@gmail.com,rennes@solidaires-etudiant-e-s.org
 facebook: SESLRennes
 instagram: solidaireseturennes
 website: https://www.solidaires-etudiant-e-s.org/syndicats/sesl-rennes
+image: /solidaires-etudiantes.png
 map:
   latitude: 48.1181474
   longitude: -1.6357161

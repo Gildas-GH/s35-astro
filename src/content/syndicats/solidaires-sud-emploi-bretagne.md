@@ -2,6 +2,7 @@
 title: Solidaires SUD Emploi Bretagne
 mail: syndicat.SUD-Bretagne@pole-emploi.fr
 website: https://interne.solidaires.org/se-syndiquer/les-syndicats/solidaires-sud-emploi/
+image: /solidaires-sud-emploi.webp
 map:
   latitude: 48.1043587
   longitude: -1.67075

@@ -4,6 +4,7 @@ phone: 648837913
 mail: sudsantesociaux35@gmail.com
 instagram: sud_sante_sociaux_35
 website: https://www.sudsantesociaux35.org/
+image: /sud-sante-sociaux.jpg
 map:
   latitude: 48.1145709
   longitude: -1.6519934

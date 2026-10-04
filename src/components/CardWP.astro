@@ -1,0 +1,31 @@
+---
+import { toTransitionName } from "@/utils/toTransitionName";
+import Datetime from "./Datetime.astro";
+import type { Page } from "@/i18n/types";
+
+type Props = {
+  variant?: "h2" | "h3";
+  page: Page
+};
+
+const { variant: Heading = "h2", page } = Astro.props;
+
+---
+
+<li class="my-6">
+  <a
+    href={`/posts/${page.slug}`}
+    class:list={[
+      "text-accent inline-block text-lg font-medium",
+      "decoration-dashed underline-offset-4 hover:underline",
+      "focus-visible:no-underline focus-visible:underline-offset-0",
+    ]}
+  >
+    <img src={page._embedded?.["wp:featuredmedia"]?.[0]?.source_url} alt={page._embedded?.["wp:featuredmedia"]?.[0]?.title.rendered ?? `Illustration de ${page.title.rendered}`} />
+    <Heading transition:name={toTransitionName(`${page.id}`)}>
+      {page.title.rendered}
+    </Heading>
+  </a>
+  <Datetime pubDatetime={new Date(page.date)} />
+  <p set:html={page.excerpt.rendered}></p>
+</li>

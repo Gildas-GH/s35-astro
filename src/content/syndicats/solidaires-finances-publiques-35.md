@@ -3,6 +3,7 @@ title: Solidaires Finances Publiques 35
 phone: 299293772
 mail: solidairesfinancespubliques.drfip35@dgfip.finances.gouv.fr
 website: https://sections.solidairesfinancespubliques.info/350/
+image: /solidaires-finances-publiques.png
 map:
   latitude: 48.1069239
   longitude: -1.6748548

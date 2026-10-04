@@ -4,6 +4,7 @@ phone: 290568729
 mail: sudrail.bretagne@gmail.com
 facebook: "100057663510976"
 website: https://sudrail.fr/SUD-Rail-Bretagne
+image: /wp-content/uploads/2025/10/1-SUD-Rail-BZH-fonds-noir.jpg
 map:
   latitude: 48.1028
   longitude: -1.6641

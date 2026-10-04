@@ -5,6 +5,7 @@ mail: sudinterpro@solidaires35.fr
 facebook: solidaires35
 instagram: solidaires_35
 website: https://solidaires35.fr/se-syndiquer/
+image: /solidaires35.png
 map:
   latitude: 48.1226712
   longitude: -1.7066606

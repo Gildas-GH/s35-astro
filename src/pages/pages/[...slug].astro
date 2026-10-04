@@ -9,6 +9,7 @@ import config from "@/config";
 import Formations from "@/components/Formations.astro";
 import IconDownload from "@/assets/icons/IconDownload.svg";
 import { fr } from 'chrono-node';
+import Map from "@/components/Map.astro";
 
 export async function getStaticPaths() {
   const pages = await getCollection("pages");
@@ -131,22 +132,7 @@ if (page.data.permanences) {
   }
   {
     page.data.map?.latitude &&
-    <div class="app-layout flex border-accent border-4 px-0">
-      <div class="flex-1">
-        <iframe height="350" width="100%" src={`https://www.openstreetmap.org/export/embed?bbox=-1.8499946594238283,48.068788220302196,-1.5633201599121094,48.17650327923257&layer=mapnik&marker=${page.data.map.latitude},${page.data.map.longitude}`} style="border: 0px"></iframe>
-      </div>
-      <div class="flex-1 bg-accent text-white flex flex-col justify-between p-6">
-        <div class="flex flex-col gap-2">
-          <h2 class="text-4xl">{page.data.map.address}</h2>
-          <p>Métro : {page.data.map.transit}</p>
-          <p>Parking à proximité</p>
-        </div>
-        <div class="flex justify-between">
-          <a class="border-white border-2 hover:bg-white hover:text-accent py-1 px-2" href={`geo:${page.data.map.latitude},${page.data.map.longitude}`}>Ouvrir dans un GPS</a>
-          <a class="border-white border-2 hover:bg-white hover:text-accent py-1 px-2" href={`https://www.openstreetmap.org/?mlat=${page.data.map.latitude}&mlon=${page.data.map.longitude}#map=13/${page.data.map.latitude}/${page.data.map.longitude}`} target="_blank">Ouvrir la carte</a>
-        </div>
-      </div>
-    </div>
+    <Map map={page.data.map} />
   }
 
   {

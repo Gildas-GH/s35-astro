@@ -4,6 +4,7 @@ phone: 953775722
 mail: syndicat@sudeducation35.fr
 facebook: sudeduc35
 instagram: sudeducation35
+image: /sud-educ.png
 website: https://www.sudeducation35.fr/
 map:
   latitude: 48.1226712
