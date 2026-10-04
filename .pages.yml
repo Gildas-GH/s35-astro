@@ -6,6 +6,9 @@ content:
     label: Pages
     type: collection
     path: src/content/pages
+    filename:
+      template: "{primary}.md"
+      field: create
     fields:
       - name: title
         label: Titre
