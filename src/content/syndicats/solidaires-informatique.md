@@ -1,5 +1,5 @@
 ---
-title: Solidaires Informatique
+title: Solidaires Informatique 35
 mail: solidairesinformatique35@disroot.org
 facebook: solidairesinformatique
 instagram: solidairesinformatique
