@@ -1,5 +1,5 @@
 ---
-import { getEntry, render, getCollection } from "astro:content";
+import { render, getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
@@ -7,6 +7,7 @@ import Main from "@/components/Main.astro";
 import Footer from "@/components/Footer.astro";
 import config from "@/config";
 import Formations from "@/components/Formations.astro";
+import IconDownload from "@/assets/icons/IconDownload.svg";
 
 export async function getStaticPaths() {
   const pages = await getCollection("pages");
@@ -56,6 +57,22 @@ const { Content } = await render(page);
           <a class="border-white border-2 hover:bg-white hover:text-accent py-1 px-2" href={`https://www.openstreetmap.org/?mlat=${page.data.map.latitude}&mlon=${page.data.map.longitude}#map=13/${page.data.map.latitude}/${page.data.map.longitude}`} target="_blank">Ouvrir la carte</a>
         </div>
       </div>
+    </div>
+  }
+  {
+    (page.data.documents && page.data.documents?.length > 0) &&
+    <div class="app-prose app-layout mb-8">
+      <h2>Documents associés</h2>
+      {
+        page.data.documents.map(doc => {
+          var filename = doc.split('/').pop()
+          return (
+            <a href={doc} download class="flex items-center gap-2">
+              <IconDownload /> {filename}
+            </a>
+          );
+        })
+      }
     </div>
   }
 

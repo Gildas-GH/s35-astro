@@ -40,7 +40,7 @@ const sameDay = formation.date_start === formation.date_end;
                 <p class="text-sm text-muted-foreground">{formation.zip_code} {formation.city}</p>
                 {startsWithinAMonth(formation.date_start) && <span class="text-accent">Derniers jours pour s'inscrire</span>}
             </div>
-            <h2 class="text-lg">{formation.title}</h2>
+            <h3 class="text-lg">{formation.title}</h3>
             <p>{stripHtml(formation.search_description)}</p>
             <div class="flex gap-2">
             {

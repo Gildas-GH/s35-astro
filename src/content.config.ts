@@ -32,6 +32,7 @@ const pages = defineCollection({
     formation: z.boolean().optional(),
     documents: z.array(z.string()).max(5).optional(),
     image: z.string().optional(),
+    embed: z.string().optional(),
     map: z.object({
       latitude: z.number().optional(),
       longitude: z.number().optional(),

@@ -57,3 +57,7 @@ content:
           - name: transit
             label: Accès en métro
             type: string
+      - name: embed
+        label: Intégrer une page
+        description: Permet d'intégrer une autre page dans la page, par exemple un Framaforms, une vidéo YouTube...
+        type: text
