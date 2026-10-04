@@ -66,3 +66,51 @@ content:
         description: Entrez des dates et le site affichera la prochaine échéance (par exemple "premier lundi du mois")
         type: string
         list: true
+  - name: syndicats
+    label: Syndicats
+    type: collection
+    path: src/content/syndicats
+    filename:
+      template: "{primary}.md"
+    fields:
+      - name: title
+        label: Nom
+        type: string
+        required: true
+        options:
+          maxlength: 70
+      - name: body
+        label: Description
+        type: rich-text
+      - name: phone
+        label: Téléphone
+        type: number
+      - name: mail
+        label: Courriel
+        type: string
+      - name: facebook
+        label: Facebook
+        type: string
+      - name: instagram
+        label: Instagram
+        type: string
+      - name: website
+        label: Site Internet
+        type: string
+      - name: map
+        label: Carte
+        description: Permet d'afficher et de personnaliser une carte sur la page. Laisser vide pour ne pas afficher de carte.
+        type: object
+        fields:
+          - name: latitude
+            label: Latitude
+            type: number
+          - name: longitude
+            label: Longitude
+            type: number
+          - name: address
+            label: Adresse affichée
+            type: string
+          - name: transit
+            label: Accès en métro
+            type: string

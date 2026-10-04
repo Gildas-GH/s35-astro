@@ -43,4 +43,22 @@ const pages = defineCollection({
   }),
 });
 
-export const collections = { posts, pages };
+const syndicats = defineCollection({
+  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/syndicats" }),
+  schema: z.object({
+    title: z.string().max(70),
+    phone: z.number().optional(),
+    mail: z.string().optional(),
+    facebook: z.string().optional(),
+    instagram: z.string().optional(),
+    website: z.string().optional(),
+    map: z.object({
+      latitude: z.number().optional(),
+      longitude: z.number().optional(),
+      address: z.string().optional(),
+      transit:z.string().optional(),
+    }).optional()
+  }),
+});
+
+export const collections = { posts, pages, syndicats };
