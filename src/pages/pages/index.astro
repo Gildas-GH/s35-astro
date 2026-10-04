@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import Main from "@/components/Main.astro";
+import Footer from "@/components/Footer.astro";
+import config from "@/config";
+
+const pages = await getCollection("pages");
+
+---
+
+<Layout title={`Pages | ${config.site.title}`}>
+  <Header />
+
+  <Breadcrumb />
+
+  <Main pageTitle="Pages" pageDesc="Pages de Solidaires 35 exportées de WordPress (donc désynchronisées)">
+    <div class="flex flex-col gap-5">
+        {pages.map((p) => 
+        <a href={`/pages/${p.id}/`}>
+            <div>
+                {p.data.title}
+            </div>
+        </a>)}
+    </div>
+  </Main>
+
+  <Footer />
+</Layout>

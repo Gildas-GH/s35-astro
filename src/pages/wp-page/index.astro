@@ -1,0 +1,52 @@
+---
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import Footer from '@/components/Footer.astro';
+import Header from '@/components/Header.astro';
+import Layout from '@/layouts/Layout.astro';
+import config from "@/config";
+import Main from "@/components/Main.astro";
+
+interface Page {
+    slug: string;
+    title: { rendered: string };
+    excerpt: { rendered: string };
+    content: { rendered: string };
+    _embedded: {
+        "wp:featuredmedia": {
+            source_url: string;
+            title: { rendered: string };
+        }[]
+    };
+    link: string;
+}
+
+const request = await fetch("https://solidaires35.fr/wp-json/wp/v2/pages?per_page=100&_embed");
+const pages: Page[] = await request.json();
+
+---
+
+<Layout
+  title={`Pages | ${config.site.title}`}
+>
+  <Header />
+
+  <Breadcrumb />
+
+  <Main pageTitle={"Pages"} class="app-prose">
+    <p>Liste des pages WordPress : </p>
+    <div class="flex flex-col gap-5">
+        {pages.map((p) => 
+        <a href={`/wp-page/${p.slug}/`}>
+            <div>
+                {
+                    p._embedded['wp:featuredmedia']?.[0] &&
+                    <img src={p._embedded['wp:featuredmedia']?.[0]?.source_url} alt={p._embedded['wp:featuredmedia']?.[0]?.title.rendered} />
+                }
+                {p.title.rendered}
+            </div>
+        </a>)}
+    </div>
+  </Main>
+
+  <Footer />
+</Layout>

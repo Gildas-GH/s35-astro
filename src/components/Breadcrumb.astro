@@ -57,9 +57,9 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
 }
 ---
 
-<nav class="app-layout mt-8 mb-1" aria-label="breadcrumb">
+<nav class="mb-6 herolidaires bg-accent text-white pt-4" aria-label="breadcrumb">
   <ul
-    class="flex flex-wrap items-center gap-x-1 font-light [&>li:not(:last-child)>a]:hover:opacity-100"
+    class="flex flex-wrap items-center gap-x-1 font-light [&>li:not(:last-child)>a]:hover:opacity-100 app-layout"
   >
     <li class="flex items-center gap-x-1">
       <a href={getRelativeLocaleUrl(locale, "")} class="opacity-80">
@@ -96,3 +96,14 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
     }
   </ul>
 </nav>
+
+<style>
+  .herolidaires:after {
+    content: "";
+    display: block;
+    height: 50px;
+    background-image: url('/border.png');
+    background-repeat: repeat round;
+    background-position: bottom center;
+  }
+</style>

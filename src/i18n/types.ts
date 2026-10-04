@@ -67,3 +67,27 @@ export interface UIStrings {
     goHome: string;
   };
 }
+
+export interface Formation {
+  id: number;
+  url: string;
+  title: string;
+  date_start: string; // ISO "YYYY-MM-DD"
+  date_end: string; // ISO "YYYY-MM-DD"
+  is_complete: boolean;
+  search_description: string; // HTML
+  structure: {
+    id: number;
+    name: string;
+    email: string;
+    is_interpro: boolean;
+  };
+  topic_tags: {
+    id: string;
+    name: string;
+  }[];
+  zip_code: string;
+  city: string;
+  is_online: boolean;
+  status: "to_be_confirmed";
+}

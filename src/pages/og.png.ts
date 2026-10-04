@@ -6,7 +6,7 @@ import { getFontPathByWeight } from "@/utils/getFontPathByWeight";
 import config from "@/config";
 
 export const GET: APIRoute = async context => {
-  const fonts = fontData["--font-google-sans-code"];
+  const fonts = fontData["--font-scotchlidaires"];
   const regularFontPath = getFontPathByWeight(fonts, 400);
   const boldFontPath = getFontPathByWeight(fonts, 700);
 
@@ -45,7 +45,7 @@ export const GET: APIRoute = async context => {
                 top: "-1px",
                 right: "-1px",
                 border: "4px solid #000",
-                background: "#ecebeb",
+                background: "#e50073",
                 opacity: "0.9",
                 borderRadius: "4px",
                 display: "flex",

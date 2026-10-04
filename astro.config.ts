@@ -29,8 +29,8 @@ export default defineConfig({
     }),
   ],
   i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
+    locales: ["en", "fr"],
+    defaultLocale: "fr",
     routing: {
       prefixDefaultLocale: false,
     },
@@ -60,13 +60,23 @@ export default defineConfig({
   },
   fonts: [
     {
-      name: "Google Sans Code",
-      cssVariable: "--font-google-sans-code",
-      provider: fontProviders.google(),
-      fallbacks: ["monospace"],
-      weights: [300, 400, 500, 600, 700],
-      styles: ["normal", "italic"],
-      formats: ["woff", "ttf"],
+      name: "Scotchlidaires",
+      cssVariable: "--font-scotchlidaires",
+      provider: fontProviders.local(),
+      options: {
+        variants: [
+          {
+            src: ['./src/assets/fonts/scotchlidaires.ttf'],
+            weight: 400,
+            style: 'normal'
+          },
+          {
+            src: ['./src/assets/fonts/scotchlidaires-manif.ttf'],
+            weight: 700,
+            style: 'normal'
+          }
+      ]
+      }
     },
   ],
   env: {

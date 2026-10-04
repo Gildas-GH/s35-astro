@@ -1,0 +1,53 @@
+---
+import type { Formation } from '@/i18n/types';
+
+interface Props {
+  formation: Formation;
+}
+
+const formatDate = (iso: string, short?: boolean) =>
+  new Date(iso + "T00:00:00").toLocaleDateString("fr-FR", {
+    day: "numeric",
+    month: short ? undefined : "long",
+    year: short ? undefined : "numeric",
+  });
+
+const stripHtml = (html: string) => {
+  return html.replace(/<[^>]*>/g, "").trim();
+}
+
+const startsWithinAMonth = (dateStart: string) => {
+  const start = new Date(dateStart + "T00:00:00").getTime();
+  const now = Date.now();
+  const oneMonth = 30 * 24 * 60 * 60 * 1000;
+  return start - now < oneMonth && start >= now - 24 * 60 * 60 * 1000;
+}
+
+const { formation } = Astro.props;
+const sameDay = formation.date_start === formation.date_end;
+---
+
+<a href={formation.url} class="app-layout" target="_blank">
+    <div class="app-layout border-4 border-accent py-4 gap-4 hover:bg-border flex">
+        <div class="w-32 h-32 p-2 flex items-center text-center bg-[#ffed00] text-xl font-semibold shrink-0">
+            {sameDay
+                ? <span>{formatDate(formation.date_start)}</span>
+                : <span>Du {formatDate(formation.date_start, true)} au {formatDate(formation.date_end)}</span>
+            }
+        </div>
+        <div class="flex-1 flex flex-col gap-1">
+            <div class="flex justify-between">
+                <p class="text-sm text-muted-foreground">{formation.zip_code} {formation.city}</p>
+                {startsWithinAMonth(formation.date_start) && <span class="text-accent">Derniers jours pour s'inscrire</span>}
+            </div>
+            <h2 class="text-lg">{formation.title}</h2>
+            <p>{stripHtml(formation.search_description)}</p>
+            <div class="flex gap-2">
+            {
+                formation.topic_tags.map((topic) => <div class="text-sm py-1 px-2 bg-muted">{topic.name}</div>)
+            }
+
+            </div>
+        </div>
+    </div>
+</a>

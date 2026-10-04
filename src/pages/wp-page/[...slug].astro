@@ -1,0 +1,55 @@
+---
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import Footer from '@/components/Footer.astro';
+import Header from '@/components/Header.astro';
+import Layout from '@/layouts/Layout.astro';
+import config from "@/config";
+import Main from "@/components/Main.astro";
+
+interface Page {
+    slug: string;
+    title: { rendered: string };
+    excerpt: { rendered: string };
+    content: { rendered: string };
+    _embedded: {
+        "wp:featuredmedia": {
+            source_url: string;
+        }[]
+    };
+    link: string;
+}
+
+export async function getStaticPaths() {
+    const request = await fetch("https://solidaires35.fr/wp-json/wp/v2/pages?per_page=100&_embed");
+    const pages: Page[] = await request.json();
+
+    return pages.map(page => ({
+        params: { slug: page.slug },
+        props: page,
+    }));
+}
+
+const { slug } = Astro.params;
+
+let res = await fetch(`https://solidaires35.fr/wp-json/wp/v2/pages?slug=${slug}&_embed`);
+let [page]: [Page] = await res.json();
+
+---
+
+<Layout
+  title={`${page.title.rendered} | ${config.site.title}`}
+  description={page.excerpt.rendered}
+  ogImage={page._embedded['wp:featuredmedia']?.[0]?.source_url}
+  canonicalURL={page.link}
+>
+  <Header />
+
+  <Breadcrumb />
+
+  <Main pageTitle={page.title.rendered} class="app-prose">
+    <p>Affichage de la page WordPress : </p>
+    <div set:html={page.content.rendered}></div>
+  </Main>
+
+  <Footer />
+</Layout>

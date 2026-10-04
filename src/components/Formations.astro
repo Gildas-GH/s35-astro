@@ -1,0 +1,16 @@
+---
+import FormationComponent from "@/components/Formation.astro";
+import type { Formation } from "@/i18n/types";
+
+const res = await fetch("https://interne.solidaires.org/api/formation/search/?structures=17");
+const formations: { formations: Formation[] } = await res.json();
+
+---
+
+<div class="flex flex-col gap-5 mb-10">
+  {
+    formations.formations.map((formation) => (
+      <FormationComponent formation={formation} />
+    ))
+  }
+</div>
