@@ -5,7 +5,7 @@ description: Solidaires 35 vous accueille lors de ses permanences juridiques
 formation: false
 permanences:
   - premier vendredi du mois
-  - troisième vendredi du mois
+  - troisième vendredi du mois sauf en octobre
 ---
 La commission juridique de Solidaires 35 propose, dans ses permanences juridiques, une assistance aux salarié-es du privé comme du public pour les aider à faire valoir leurs droits vis à vis de leurs employeurs dans le cadre des conflits liés au travail.
 
