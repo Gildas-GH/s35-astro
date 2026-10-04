@@ -31,6 +31,7 @@ const pages = defineCollection({
     description: z.string().max(140).optional(),
     formation: z.boolean().optional(),
     documents: z.array(z.string()).max(5).optional(),
+    permanences: z.array(z.string()).optional(),
     image: z.string().optional(),
     embed: z.string().optional(),
     map: z.object({

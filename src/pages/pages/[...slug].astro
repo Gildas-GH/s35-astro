@@ -8,6 +8,7 @@ import Footer from "@/components/Footer.astro";
 import config from "@/config";
 import Formations from "@/components/Formations.astro";
 import IconDownload from "@/assets/icons/IconDownload.svg";
+import { fr } from 'chrono-node';
 
 export async function getStaticPaths() {
   const pages = await getCollection("pages");
@@ -22,6 +23,19 @@ export async function getStaticPaths() {
 const { page } = Astro.props;
 
 const { Content } = await render(page);
+
+let nextPerm: string[] = []
+if (page.data.permanences) {
+  nextPerm = page.data.permanences.map((perm) => {
+    const permDate = fr.parseDate(perm);
+    const permDateText = permDate.toLocaleDateString("fr-FR", {
+      day: "numeric",
+      month: "long"
+    });
+    return permDateText
+  })
+}
+
 ---
 
 <Layout
@@ -34,7 +48,15 @@ const { Content } = await render(page);
   <Breadcrumb />
 
   <Main pageTitle={page.data.title} class="app-prose">
+    {
+      page.data?.image && <img src={page.data.image} />
+    }
     <Content />
+    <p>Prochaines permanences</p>
+    {
+      nextPerm?.length > 0 &&
+      <p>Prochaines permanences le {nextPerm.map((perm, index) => <span>{perm}{index < nextPerm.length-1 && ", le "}</span>)} </p>
+    }
   </Main>
 
   {
@@ -58,6 +80,10 @@ const { Content } = await render(page);
         </div>
       </div>
     </div>
+  }
+
+  {
+    page.data?.embed && <div class="max-w-app w-full" set:html={page.data.embed} />
   }
   {
     (page.data.documents && page.data.documents?.length > 0) &&

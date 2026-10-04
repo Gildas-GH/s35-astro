@@ -61,3 +61,8 @@ content:
         label: Intégrer une page
         description: Permet d'intégrer une autre page dans la page, par exemple un Framaforms, une vidéo YouTube...
         type: text
+      - name: permanences
+        label: Dates de permanence
+        description: Entrez des dates et le site affichera la prochaine échéance (par exemple "premier lundi du mois")
+        type: string
+        list: true
