@@ -1,5 +1,5 @@
 ---
-title: " SUD PTT 35"
+title: SUD PTT 35
 phone: 299505151
 mail: sudptt35@wanadoo.fr
 facebook: "100009968262780"
