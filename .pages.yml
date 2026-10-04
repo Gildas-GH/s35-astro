@@ -22,3 +22,29 @@ content:
       - name: body
         label: Contenu
         type: rich-text
+      - name: formation
+        label: Page formation
+        description: Si vous cochez cette case, la liste des formations du CEFI Solidaires Bretagne ajoutée sur la page en dessous du contenu.
+        type: boolean
+        default: false
+      - name: map
+        label: Carte
+        description: Permet d'afficher et de personnaliser une carte sur la page. Laisser vide pour ne pas afficher de carte.
+        type: object
+        fields:
+          - name: latitude
+            type: number
+          - name: longitude
+            type: number
+          - name: address
+            label: Adresse affichée
+            type: string
+          - name: transit
+            label: Accès en métro
+            type: string
+          - name: link
+            label: Lien GPS
+            pattern:
+              regex: "^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,63}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$"
+              message: "Veuillez entrer une URL valide"
+            type: string
