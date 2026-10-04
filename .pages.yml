@@ -1,0 +1,15 @@
+media: 
+  input: public
+  output: /
+content:
+  - name: pages
+    label: Pages
+    type: collection
+    path: src/content/pages
+    fields:
+      - name: Titre
+        type: string
+      - name: Description
+        type: string
+      - name: Contenu
+        type: rich-text
