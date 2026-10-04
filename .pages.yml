@@ -27,6 +27,18 @@ content:
         description: Si actif, la liste des formations du CEFI Solidaires Bretagne sera ajoutée sur la page sous le contenu.
         type: boolean
         default: false
+      - name: documents
+        label: Documents associés
+        type: file
+        description: Ces documents seront proposés en téléchargement en bas de page.
+        options:
+          # categories: [document]
+          multiple:
+            max: 5
+          unique: true
+      - name: image
+        label: Image principale
+        type: image
       - name: map
         label: Carte
         description: Permet d'afficher et de personnaliser une carte sur la page. Laisser vide pour ne pas afficher de carte.
