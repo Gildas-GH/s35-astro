@@ -57,7 +57,7 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
 }
 ---
 
-<nav class="mb-6 herolidaires bg-accent text-white pt-4" aria-label="breadcrumb">
+<nav class="herolidaires bg-accent text-white pt-4 relative mb-16" aria-label="breadcrumb">
   <ul
     class="flex flex-wrap items-center gap-x-1 font-light [&>li:not(:last-child)>a]:hover:opacity-100 app-layout"
   >
@@ -98,12 +98,16 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
 </nav>
 
 <style>
-  .herolidaires:after {
+  .herolidaires::after {
     content: "";
-    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -50px;
     height: 50px;
     background-image: url('/border.png');
     background-repeat: repeat round;
     background-position: bottom center;
+    pointer-events: none;
   }
 </style>

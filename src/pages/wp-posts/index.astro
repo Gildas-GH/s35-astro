@@ -7,23 +7,23 @@ import config from "@/config";
 import Main from "@/components/Main.astro";
 import type { Page } from '@/i18n/types';
 
-const request = await fetch("https://solidaires35.fr/wp-json/wp/v2/pages?per_page=100&_embed");
-const pages: Page[] = await request.json();
+const request = await fetch("https://solidaires35.fr/wp-json/wp/v2/posts?per_post=100&_embed");
+const posts: Page[] = await request.json();
 
 ---
 
 <Layout
-  title={`Pages | ${config.site.title}`}
+  title={`posts | ${config.site.title}`}
 >
   <Header />
 
   <Breadcrumb />
 
-  <Main pageTitle={"Pages"} class="app-prose">
-    <p>Liste des pages WordPress : </p>
+  <Main pageTitle={"posts"} class="app-prose">
+    <p>Liste des posts WordPress : </p>
     <div class="flex flex-col gap-5">
-        {pages.map((p) => 
-        <a href={`/wp-page/${p.slug}/`}>
+        {posts.map((p) => 
+        <a href={`/wp-posts/${p.slug}/`}>
             <div>
                 {
                     p._embedded['wp:featuredmedia']?.[0] &&

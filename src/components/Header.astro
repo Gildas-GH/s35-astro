@@ -50,9 +50,19 @@ const isActive = (path: string) => {
   >
     <a
       href={getRelativeLocaleUrl(locale, "")}
-      class="absolute py-1 text-xl leading-8 font-bold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"
+      class="absolute py-1 sm:static sm:my-auto"
     >
-      {site.title}
+      <img
+        src="/solidaires35.png"
+        alt={site.title}
+        class="h-8 w-auto max-w-45 object-contain sm:h-10 dark:hidden"
+      />
+      <img
+        src="/solidaires35-dark.png"
+        alt={site.title}
+        aria-hidden="true"
+        class="h-8 w-auto max-w-45 object-contain sm:h-10 hidden dark:block"
+      />
     </a>
     <nav
       id="nav-menu"
@@ -92,8 +102,8 @@ const isActive = (path: string) => {
         </li>
         <li class="col-span-2">
           <a
-            href={getRelativeLocaleUrl(locale, "about")}
-            class:list={{ "active-nav": isActive("/about") }}
+            href={getRelativeLocaleUrl(locale, "pages/contact-et-acces/")}
+            class:list={{ "active-nav": isActive("/pages/contact-et-acces/") }}
           >
             {t.nav.about}
           </a>

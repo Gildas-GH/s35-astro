@@ -91,3 +91,28 @@ export interface Formation {
   is_online: boolean;
   status: "to_be_confirmed";
 }
+
+export interface Page {
+  id: number
+  slug: string;
+  title: { rendered: string };
+  excerpt: { rendered: string };
+  content: { rendered: string };
+  _embedded: {
+    "wp:featuredmedia": {
+      source_url: string;
+      title: { rendered: string };
+    }[]
+    "wp:term": Category[][]
+  };
+  link: string;
+  date: string;
+  modified: string;
+}
+
+export interface Category {
+  id: number;
+  link: string;
+  name: string;
+  slug: string;
+}

@@ -1,0 +1,21 @@
+---
+import type { Page } from '@/i18n/types';
+
+interface Props {
+  wp_url: string;
+}
+
+const { wp_url } = Astro.props;
+
+const request = await fetch(`${wp_url}/wp-json/wp/v2/posts?per_page=6&_embed`);
+const pages: Page[] = await request.json();
+
+---
+
+<div class="grid grid-cols-3 gap-4 my-4">
+  {pages.map((p) => 
+    <a href={p.link} target="_blank" class="bg-accent text-white font-bold flex items-center text-center p-4">
+      <h3>{p.title.rendered}</h3>
+    </a>
+  )}
+</div>

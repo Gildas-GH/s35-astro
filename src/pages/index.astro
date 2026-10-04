@@ -12,6 +12,7 @@ import LinkButton from "@/components/LinkButton.astro";
 import { getSortedPosts } from "@/utils/getSortedPosts";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
+import PostsWP from "@/components/PostsWP.astro";
 
 const { socials, posts: postsConfig } = config;
 
@@ -20,9 +21,9 @@ const t = useTranslations(locale);
 
 const posts = await getCollection("posts");
 const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 const homePath = getRelativeLocaleUrl(locale, "");
+
 ---
 
 <Layout>
@@ -32,7 +33,7 @@ const homePath = getRelativeLocaleUrl(locale, "");
     data-layout="index"
     data-home-path={homePath}
   >
-    <section id="hero" class="pt-8 bg-accent text-center text-white herolidaires">
+    <section id="hero" class="pt-8 bg-accent text-center text-white herolidaires relative mb-24">
       <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
         Solidaires 35
       </h1>
@@ -46,7 +47,7 @@ const homePath = getRelativeLocaleUrl(locale, "");
         <IconRss
           width={20}
           height={20}
-          class="stroke-background scale-125 stroke-3 rtl:-rotate-90"
+          class="stroke-white scale-125 stroke-3 rtl:-rotate-90"
         />
         <span class="sr-only">RSS Feed</span>
       </a>
@@ -80,27 +81,6 @@ const homePath = getRelativeLocaleUrl(locale, "");
     </section>
 
     {
-      featuredPosts.length > 0 && (
-        <section
-          id="featured"
-          class:list={[
-            "pt-12 pb-6 app-layout",
-            { "border-border border-b": recentPosts.length > 0 },
-          ]}
-        >
-          <h2 class="text-2xl font-bold tracking-wide">
-            {t.home.featured}
-          </h2>
-          <ul>
-            {featuredPosts.map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
-
-    {
       recentPosts.length > 0 && (
         <section id="recent-posts" class="pt-12 pb-6 app-layout">
           <h2 class="text-2xl font-bold tracking-wide">
@@ -121,6 +101,23 @@ const homePath = getRelativeLocaleUrl(locale, "");
         <IconArrowRight class="inline-block rtl:-rotate-180" />
       </LinkButton>
     </div>
+
+    <div class="my-8 text-center app-layout">
+      <div class="bg-accent border-4 border-accent text-white">
+        <h2 class="text-xl py-4">Solidaires 35 sur Instagram</h2>
+        <iframe class="aspect-square w-full" src="https://www.instagram.com/solidaires_35/embed/"></iframe>
+      </div>
+    </div>
+
+    <section id="recent-posts" class="pt-12 pb-6 app-layout">
+      <div class="flex justify-between">
+        <h2 class="text-2xl font-bold tracking-wide">
+          Mobilisations nationales
+        </h2>
+        <a href="https://www.solidaires.org" target="_blank" class="font-mono">solidaires.org</a>
+      </div>
+      <PostsWP wp_url="https://www.solidaires.org" />
+    </section>
   </main>
   <Footer />
 </Layout>
@@ -137,12 +134,16 @@ const homePath = getRelativeLocaleUrl(locale, "");
 </script>
 
 <style>
-  .herolidaires:after {
+  .herolidaires::after {
     content: "";
-    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -100px;
     height: 100px;
     background-image: url('/border.png');
     background-repeat: repeat round;
     background-position: bottom center;
+    pointer-events: none;
   }
 </style>

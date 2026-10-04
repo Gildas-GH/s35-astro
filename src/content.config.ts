@@ -27,10 +27,17 @@ const posts = defineCollection({
 const pages = defineCollection({
   loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/pages" }),
   schema: z.object({
-    title: z.string(),
-    description: z.string().optional(),
-    ogImage: z.string().optional(),
-    canonicalURL: z.string().optional(),
+    title: z.string().max(70),
+    description: z.string().max(140).optional(),
+    formation: z.boolean().optional(),
+    documents: z.array(z.string()).max(5).optional(),
+    image: z.string().optional(),
+    map: z.object({
+      latitude: z.number().optional(),
+      longitude: z.number().optional(),
+      address: z.string().optional(),
+      transit:z.string().optional(),
+    }).optional()
   }),
 });
 

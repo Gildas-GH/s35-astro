@@ -12,6 +12,7 @@ content:
       - name: title
         label: Titre
         type: string
+        required: true
         options:
           maxlength: 70
       - name: description
@@ -55,10 +56,4 @@ content:
             type: string
           - name: transit
             label: Accès en métro
-            type: string
-          - name: link
-            label: Lien GPS
-            # pattern:
-            #   regex: "^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,63}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$"
-            #   message: "Veuillez entrer une URL valide"
             type: string

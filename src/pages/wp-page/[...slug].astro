@@ -5,19 +5,7 @@ import Header from '@/components/Header.astro';
 import Layout from '@/layouts/Layout.astro';
 import config from "@/config";
 import Main from "@/components/Main.astro";
-
-interface Page {
-    slug: string;
-    title: { rendered: string };
-    excerpt: { rendered: string };
-    content: { rendered: string };
-    _embedded: {
-        "wp:featuredmedia": {
-            source_url: string;
-        }[]
-    };
-    link: string;
-}
+import type { Page } from '@/i18n/types';
 
 export async function getStaticPaths() {
     const request = await fetch("https://solidaires35.fr/wp-json/wp/v2/pages?per_page=100&_embed");
