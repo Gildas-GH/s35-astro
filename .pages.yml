@@ -24,7 +24,7 @@ content:
         type: rich-text
       - name: formation
         label: Page formation
-        description: Si vous cochez cette case, la liste des formations du CEFI Solidaires Bretagne ajoutée sur la page en dessous du contenu.
+        description: Si actif, la liste des formations du CEFI Solidaires Bretagne sera ajoutée sur la page sous le contenu.
         type: boolean
         default: false
       - name: map
@@ -33,8 +33,10 @@ content:
         type: object
         fields:
           - name: latitude
+            label: Latitude
             type: number
           - name: longitude
+            label: Longitude
             type: number
           - name: address
             label: Adresse affichée
