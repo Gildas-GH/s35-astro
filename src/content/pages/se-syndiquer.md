@@ -5,6 +5,9 @@ description: L'adhésion à Solidaires se fait typiquement via le syndicat de
 formation: false
 documents:
   - /wp-content/uploads/2019/11/Bulletin-adhesion-SOLIDAIRES-35-07.pdf
+embed: '<iframe
+  src="https://framaforms.org/sud-cest-solidaires-syndiquez-vous-1685684759"
+  width="100%" height="800" border="0"></iframe> '
 ---
 L'adhésion à Solidaires se fait typiquement via le syndicat de votre secteur d'activité.
 
