@@ -21,6 +21,7 @@ const t = useTranslations(locale);
 
 const request = await fetch("https://solidaires35.fr/wp-json/wp/v2/posts?per_post=6&_embed");
 const posts: Page[] = await request.json();
+posts.forEach(p => p.slug = p.slug.replace('%e2%8b%85', '-').replace('%c2%b7', '-'));
 
 const homePath = getRelativeLocaleUrl(locale, "");
 

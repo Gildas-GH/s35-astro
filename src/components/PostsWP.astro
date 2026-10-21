@@ -1,5 +1,6 @@
 ---
 import type { Page } from '@/i18n/types';
+import Datetime from './Datetime.astro';
 
 interface Props {
   wp_url: string;
@@ -12,10 +13,23 @@ const pages: Page[] = await request.json();
 
 ---
 
-<div class="grid grid-cols-3 gap-4 my-4">
+<ul class="my-4">
   {pages.map((p) => 
-    <a href={p.link} target="_blank" class="border-accent border-4 text-accent hover:text-white hover:bg-accent transition font-bold flex items-center text-center p-4">
-      <h3>{p.title.rendered}</h3>
-    </a>
+    <li class="my-6">
+      <a
+        href={p.link} target="_blank"
+        class:list={[
+          "text-accent inline-block text-lg font-medium",
+          "decoration-dashed underline-offset-4 hover:underline",
+          "focus-visible:no-underline focus-visible:underline-offset-0",
+        ]}
+      >
+        <h3>
+          {p.title.rendered}
+        </h3>
+      </a>
+      <Datetime pubDatetime={new Date(p.date)} />
+      <p set:html={p.excerpt.rendered}></p>
+    </li>
   )}
-</div>
+</ul>
